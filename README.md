@@ -75,7 +75,9 @@ Backend: http://localhost:5000/api/payments
 
 MongoDB: internal via mongo:27017
 
+Github Actions: https://github.com/your-username/citizen-portal/actions
 
+Lets push the code and the code will be deployed to the server.
 
 
 
