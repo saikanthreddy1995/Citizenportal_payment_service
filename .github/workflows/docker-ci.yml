@@ -16,7 +16,7 @@ jobs:
       frontend_image: saikanth9010/payment-service-frontend
       backend_context: ./backend
       frontend_context: ./frontend
-      TAG: {{ github.sha }}
+      TAG: ${{ github_sha }}
     
 
     steps:
