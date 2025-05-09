@@ -32,19 +32,18 @@ jobs:
 
     - name: Build backend image
       run: |
-        docker build -t $backend_image:$TAG $backend_context
-
-    - name: push backend image
-      run: |
         docker build -t $backend_image:$TAG -t $backend_image:$TAG1 $backend_context
 
+    - name: Push backend image
+      run: |
+        docker push $backend_image:$TAG
+        docker push $backend_image:$TAG1
 
     - name: Build frontend image 
       run: |
-        docker build -t $frontend_image:$TAG $frontend_context
+        docker build -t $frontend_image:$TAG -t $frontend_image:$TAG1 $frontend_context
 
-
-    - name: push frontend image
+    - name: Push frontend image
       run: |
         docker push $frontend_image:$TAG
         docker push $frontend_image:$TAG1
