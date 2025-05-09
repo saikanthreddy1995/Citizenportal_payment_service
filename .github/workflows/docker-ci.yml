@@ -17,6 +17,7 @@ jobs:
       backend_context: ./backend
       frontend_context: ./frontend
       TAG: ${{ github.sha }}
+      TAG1: latest
     
 
     steps:
@@ -36,7 +37,7 @@ jobs:
     - name: push backend image
       run: |
         docker push $backend_image:$TAG
-        docker push $backend_image:latest
+        docker push $backend_image:$TAG1
 
 
     - name: Build frontend image 
@@ -47,4 +48,4 @@ jobs:
     - name: push frontend image
       run: |
         docker push $frontend_image:$TAG
-        docker push $frontend_image:latest
+        docker push $frontend_image:$TAG1
