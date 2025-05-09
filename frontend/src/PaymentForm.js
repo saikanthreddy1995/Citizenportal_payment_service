@@ -42,7 +42,7 @@ const PaymentForm = () => {
     if (!validateForm()) return;
 
     try {
-      await axios.post('http://localhost:5000/api/payments', formData);
+      await axios.post('http://backend:5000/api/payments', formData);
       alert('Payment submitted!');
       setFormData({
         fullName: '',
