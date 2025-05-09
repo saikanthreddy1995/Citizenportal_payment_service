@@ -36,8 +36,7 @@ jobs:
 
     - name: push backend image
       run: |
-        docker push $backend_image:$TAG
-        docker push $backend_image:$TAG1
+        docker build -t $backend_image:$TAG -t $backend_image:$TAG1 $backend_context
 
 
     - name: Build frontend image 
