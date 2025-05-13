@@ -18,7 +18,7 @@ spec:
       - name: frontend
         image: saikanth9010/payment-service-frontend:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 80
         # env:
         # - name: FRONTEND_URL
         #   value:
