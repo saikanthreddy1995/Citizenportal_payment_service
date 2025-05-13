@@ -17,6 +17,7 @@ spec:
       containers:
       - name: frontend
         image: saikanth9010/payment-service-frontend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         # env:
