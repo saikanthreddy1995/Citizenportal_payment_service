@@ -29,12 +29,11 @@ spec:
             - containerPort: 5000
           env:
             - name: MONGO_URI
-              value: mongodb://mongo:27017/payments
+              value: mongodb://localhost:27017/payments
         - name: frontend
           image: saikanth9010/payment-service-frontend:latest
           ports:
             - containerPort: 3000
       volumes:
         - name: mongo-data
-          persistentVolumeClaim:
-            claimName: mongo-data-pvc
+          emptyDir: {}
