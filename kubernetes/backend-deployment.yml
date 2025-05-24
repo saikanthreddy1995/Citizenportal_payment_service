@@ -19,7 +19,7 @@ spec:
           image: saikanth9010/payment-service-backend:latest
           ports:
             - containerPort: 5000
-          env:
-            - name: MONGO_URI
-              value: mongodb://mongo:27017/payments
+          # env:
+          #   - name: MONGO_URI
+          #     value: mongodb://mongo:27017/payments
 ---
