@@ -4,13 +4,40 @@ import axios from 'axios';
 const PaymentsView = () => {
   const [payments, setPayments] = useState([]);
 
+  // useEffect(() => {
+  //   const fetchPayments = async () => {
+  //     const res = await axios.get('/api/payments');
+  //     setPayments(res.data);
+  //   };
+  //   fetchPayments();
+  // }, []);
   useEffect(() => {
-    const fetchPayments = async () => {
+  const fetchPayments = async () => {
+    try {
       const res = await axios.get('/api/payments');
-      setPayments(res.data);
-    };
+
+      // SAFEGUARD: log the response to see structure
+      console.log("API response:", res.data);
+
+      // FIX: Use the correct key
+      if (Array.isArray(res.data)) {
+        setPayments(res.data); // case 1: res.data is already an array
+      } else if (Array.isArray(res.data.payments)) {
+        setPayments(res.data.payments); // case 2: nested under `payments`
+      } else {
+        setPayments([]); // fallback: set empty array
+        console.error("Unexpected API response format:", res.data);
+      }
+
+    } catch (err) {
+      console.error("Failed to fetch payments:", err);
+      setPayments([]);
+    }
+  };
+
     fetchPayments();
   }, []);
+
 
   return (
     <div className="max-w-6xl mx-auto mt-6 bg-white p-6 rounded shadow-md">
