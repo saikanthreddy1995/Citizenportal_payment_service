@@ -1,18 +1,18 @@
+# Ingress
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: payment-service-ingress
   namespace: payment-service
   annotations:
-    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
-    - host: citizen.local
+    - host: citizen.localhost
       http:
         paths:
-          # Route to frontend
           - path: /
             pathType: Prefix
             backend:
@@ -20,10 +20,8 @@ spec:
                 name: frontend
                 port:
                   number: 80
-
-          # Route API calls to backend
           # - path: /api/(.*)
-          #   pathType: Prefix
+          #   pathType: ImplementationSpecific
           #   backend:
           #     service:
           #       name: backend

@@ -1,8 +1,8 @@
----
+# Frontend Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: frontend
   namespace: payment-service
 spec:
   replicas: 1
@@ -15,11 +15,8 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend
-        image: saikanth9010/payment-service-frontend:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-        # env:
-        # - name: FRONTEND_URL
-        #   value:
+        - name: frontend
+          image: saikanth9010/payment-service-frontend:latest
+          ports:
+            - containerPort: 3000
+---

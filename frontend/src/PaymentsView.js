@@ -6,7 +6,7 @@ const PaymentsView = () => {
 
   useEffect(() => {
     const fetchPayments = async () => {
-      const res = await axios.get('http://localhost:5000/api/payments');
+      const res = await axios.get('http://backend:5000/api/payments');
       setPayments(res.data);
     };
     fetchPayments();

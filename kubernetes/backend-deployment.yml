@@ -1,8 +1,8 @@
-# backend-deployment.yaml
+# Backend Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployemnt
+  name: backend
   namespace: payment-service
 spec:
   replicas: 1
@@ -22,17 +22,4 @@ spec:
           env:
             - name: MONGO_URI
               value: mongodb://mongo:27017/payments
-          # resources:  
-          #   requests:
-          #     memory: "256Mi"
-          #     cpu: "250m"
-          #   limits:
-          #     memory: "512Mi"
-          #     cpu: "500m"
-      #     volumeMounts:
-      #       - mountPath: /data/db
-      #         name: mongo-persistent-storage
-      # volumes:
-      #   - name: mongo-persistent-storage
-      #     persistentVolumeClaim:
-      #       claimName: mongo-pv-claim
+---
