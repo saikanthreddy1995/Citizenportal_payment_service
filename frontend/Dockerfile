@@ -1,24 +1,18 @@
-From node:20-alpine as builder
+# Use an official Node.js image
+FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-
+# Install dependencies
+COPY package.json package-lock.json ./
 RUN npm install
 
+# Copy source files
 COPY . .
 
+# Build the frontend
 RUN npm run build
 
-
-
-# FROM nginx:alpine
-
-# COPY --from=builder /app/build /usr/share/nginx/html
-
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
-
-# CMD ["nginx", "-g", "daemon off;"]
+# Use a simple web server to serve static files
+RUN npm install -g serve
+CMD ["serve", "-s", "build", "-l", "3000"]
