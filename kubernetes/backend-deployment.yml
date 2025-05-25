@@ -20,6 +20,18 @@ spec:
           ports:
             - containerPort: 5000
           env:
-            - name: MONGO_URI
-              value: mongodb://mongo:27017/payments
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_USER
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_PASS
+            - name: MONGO_HOST
+              value: mongo
+            - name: MONGO_DB
+              value: payments
 ---

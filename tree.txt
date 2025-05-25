@@ -2095,15 +2095,15 @@
 │   │       └── webidl2js-wrapper.js
 │   ├── package-lock.json
 │   ├── package.json
-│   └── src
-│       ├── app.js
-│       ├── models
-│       │   └── payment.js
-│       └── routes
-│           └── payment.js
+│   ├── src
+│   │   ├── app.js
+│   │   ├── models
+│   │   │   └── payment.js
+│   │   └── routes
+│   │       └── payment.js
+│   └── tree.txt
 ├── docker-compose.yml
 ├── frontend
-│   ├── DockerFile
 │   ├── Dockerfile
 │   ├── README.md
 │   ├── node_modules
@@ -42578,6 +42578,17 @@
 │   │   ├── index.css
 │   │   └── index.js
 │   └── tailwind.config.js
+├── kubernetes
+│   ├── NODE_OPTIONS=--openssl-legacy-provider
+│   ├── backend-deployment.yml
+│   ├── backend-service.yml
+│   ├── frontend-deployment.yml
+│   ├── frontend-service.yml
+│   ├── frontend@1.0.0
+│   ├── ingress.yml
+│   ├── kind-cluster.yml
+│   ├── mongo-deployment.yml
+│   └── mongo-service.yml
 └── tree.txt
 
-4707 directories, 37874 files
+4708 directories, 37884 files

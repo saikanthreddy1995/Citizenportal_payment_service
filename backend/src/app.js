@@ -11,6 +11,16 @@ app.use('/api/payments', paymentRoutes);
 
 const PORT = process.env.PORT || 5000;
 
+
+// Construct secure Mongo URI using env vars
+const mongoUser = process.env.MONGO_USER;
+const mongoPass = process.env.MONGO_PASS;
+const mongoHost = process.env.MONGO_HOST || 'mongo'; // service name in k8s
+const mongoDb = process.env.MONGO_DB || 'payments';
+
+const mongoURI = `mongodb://${mongoUser}:${mongoPass}@${mongoHost}:27017/${mongoDb}?authSource=admin`;
+
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
