@@ -69,6 +69,21 @@ const PaymentsView = () => {
               </tr>
             ))}
           </tbody>
+          <tbody>
+            {payments.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="text-center text-gray-500 py-4">
+                  No payments found.
+                </td>
+              </tr>
+            ) : (
+              payments.map((p, index) => (
+                <tr key={index}>
+                  ...
+                </tr>
+              ))
+            )}
+          </tbody>
         </table>
       </div>
     </div>
