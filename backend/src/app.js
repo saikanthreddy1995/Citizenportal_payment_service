@@ -25,3 +25,9 @@ mongoose.connect(process.env.MONGO_URI, {
   console.error('❌ Failed to connect to MongoDB:', err);
   process.exit(1); // <--- This is essential for Kubernetes to detect failure
 });
+
+
+// Health check route (for readiness/liveness probes)
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
