@@ -9,4 +9,5 @@ resources:
   - base/frontend/service.yml
   - base/mongo/deployment.yml
   - base/mongo/service.yml
+  - base/mongo/configmap.yml
   - base/ingress.yml
