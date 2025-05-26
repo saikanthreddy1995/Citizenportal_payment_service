@@ -4,10 +4,11 @@ resources:
   - base/namespace.yml
   - base/mongo-secret.yml
   - base/backend/deployment.yml
-  - base/backend/service.yml
+  # - base/backend/service.yml
   - base/frontend/deployment.yml
-  - base/frontend/service.yml
+  # - base/frontend/service.yml
   - base/mongo/deployment.yml
-  - base/mongo/service.yml
+  # - base/mongo/service.yml
   - base/mongo/configmap.yml
   - base/ingress.yml
+  - base/service.yml
