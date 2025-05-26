@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mongo-init-script
+  name: mongo-secret
   namespace: payment-service
 data:
   init-mongo.js: |
