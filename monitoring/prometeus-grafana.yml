@@ -8,16 +8,48 @@ spec:
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
-    targetRevision: 72.6.3  # or use latest stable
+    targetRevision: 56.6.0  # Use latest stable if needed
     helm:
       releaseName: prometheus
       values: |
+        fullnameOverride: prometheus-grafana
+        namespaceOverride: monitoring
+
         grafana:
           adminPassword: prom-operator
+          defaultDashboardsEnabled: true
+          service:
+            type: ClusterIP
+          ingress:
+            enabled: false
+
         prometheus:
           prometheusSpec:
-            serviceMonitorSelectorNilUsesHelmValues: false
-    # Optional: Customize values.yaml as needed
+            serviceMonitorSelector:
+              matchLabels:
+                app: payment-service
+            serviceMonitorNamespaceSelector:
+              matchNames:
+                - payment-service
+            resources:
+              requests:
+                memory: 400Mi
+                cpu: 100m
+              limits:
+                memory: 600Mi
+                cpu: 200m
+
+        alertmanager:
+          enabled: true
+          alertmanagerSpec:
+            replicas: 1
+
+        nodeExporter:
+          enabled: true
+
+        kubeStateMetrics:
+          enabled: true
+
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
