@@ -14,22 +14,15 @@ spec:
       values: |
         fullnameOverride: prometheus-grafana
         namespaceOverride: monitoring
-
+        crds:
+          enabled: true  # ✅ This line tells Helm to install CRDs
         grafana:
           adminPassword: prom-operator
           defaultDashboardsEnabled: true
           service:
             type: ClusterIP
           ingress:
-            enabled: true
-            annotations:
-              nginx.ingress.kubernetes.io/rewrite-target: /
-            hosts:
-              - grafana.localhost
-            paths:
-              - /
-            pathType: Prefix
-
+            enabled: false
         prometheus:
           prometheusSpec:
             serviceMonitorSelector:
@@ -45,18 +38,14 @@ spec:
               limits:
                 memory: 600Mi
                 cpu: 200m
-
         alertmanager:
           enabled: true
           alertmanagerSpec:
             replicas: 1
-
         nodeExporter:
           enabled: true
-
         kubeStateMetrics:
           enabled: true
-
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -66,4 +55,5 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true
+      - ServerSideApply=true  # ✅ Enables better handling of CRDs
+      # - ApplyOutOfSyncOnly=true
