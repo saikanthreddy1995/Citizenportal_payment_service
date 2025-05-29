@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-grafana
+  name: prometheus-grafana1
   namespace: argocd
 spec:
   project: default
@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: prometheus
       values: |
-        fullnameOverride: prometheus-grafana
+        fullnameOverride: prometheus-grafana1
         namespaceOverride: monitoring
         crds:
           enabled: true  # ✅ This line tells Helm to install CRDs
@@ -30,7 +30,7 @@ spec:
             paths:
               - /
             pathType: Prefix
-            
+
         prometheus:
           prometheusSpec:
             serviceMonitorSelector:
@@ -64,4 +64,4 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true  # ✅ Enables better handling of CRDs
-      # - ApplyOutOfSyncOnly=true
+      - ApplyOutOfSyncOnly=true
