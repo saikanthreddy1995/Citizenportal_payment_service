@@ -28,7 +28,7 @@ spec:
       volumes:
         - name: init-script
           configMap:
-            name: mongo-init-script
+            name: init-mongo.js
         - name: mongo-data
           emptyDir: {}
 ---
