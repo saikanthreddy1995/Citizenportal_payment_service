@@ -1,6 +1,6 @@
 # Ingress
 apiVersion: networking.k8s.io/v1
-kind: Ingress
+kind: ingress
 metadata:
   name: payment-service-ingress
   namespace: payment-service
